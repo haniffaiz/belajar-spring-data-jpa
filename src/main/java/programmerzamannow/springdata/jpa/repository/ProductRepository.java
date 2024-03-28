@@ -8,11 +8,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import programmerzamannow.springdata.jpa.entity.Category;
 import programmerzamannow.springdata.jpa.entity.Product;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    Stream<Product> streamAllByCategory(Category category);
 
     @Modifying
     @Query("delete from Product p where p.name = :name")
