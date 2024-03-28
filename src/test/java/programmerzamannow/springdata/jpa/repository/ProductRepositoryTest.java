@@ -85,4 +85,16 @@ class ProductRepositoryTest {
 
 
     }
+
+    @Test
+    void count() {
+        Long count = productRepository.count();
+        assertEquals(2L, count);
+
+        count = productRepository.countByCategory_Name("GADGET MURAH");
+        assertEquals(2L, count);
+
+        count = productRepository.countByCategory_Name("GAK ADA");
+        assertEquals(0L, count);
+    }
 }
