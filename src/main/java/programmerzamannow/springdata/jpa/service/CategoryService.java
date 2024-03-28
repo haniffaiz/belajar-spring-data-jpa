@@ -21,6 +21,7 @@ public class CategoryService {
             categoryRepository.save(category);
         }
         throw new RuntimeException("Ups rollback please");
+
     }
 
     public void test(){
