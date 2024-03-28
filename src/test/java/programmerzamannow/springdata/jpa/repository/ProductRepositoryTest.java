@@ -215,4 +215,31 @@ class ProductRepositoryTest {
             //tampilkan konten product
         }
     }
+
+    @Test
+    void lock1() {
+        transactionOperations.executeWithoutResult(transactionStatus -> {
+            try {
+                Product product = productRepository.findById(1L).orElse(null);
+                assertNotNull(product);
+                product.setPrice(30_000_000L);
+
+                Thread.sleep(20_000);
+                productRepository.save(product);
+            }catch (InterruptedException exception){
+                throw new RuntimeException(exception);
+            }
+
+
+        });
+    }
+
+    @Test
+    void lock2() {
+        Product product = productRepository.findById(1L).orElse(null);
+        assertNotNull(product);
+        product.setPrice(10_000_000L);
+
+        productRepository.save(product);
+    }
 }
