@@ -25,4 +25,18 @@ class CategoryServiceTest {
             categoryService.test();
         });
     }
+
+    @Test
+    void programatic() {
+        assertThrows(RuntimeException.class,()->{
+            categoryService.createCategory();
+        });
+    }
+
+    @Test
+    void manual() {
+        assertThrows(RuntimeException.class,()->{
+            categoryService.manual();
+        });
+    }
 }
